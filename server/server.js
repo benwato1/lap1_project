@@ -2,10 +2,26 @@ const express = require('express')
 const app = express()
 const cors = require('cors');
 app.use(cors());
-const fullResults = require('./data')
+const posts = require('./data')
+const Post = require('./models')
+app.use(express.json());
 
 
 app.get('/', (req, res) => res.send('Welcome to the main page'))
+
+app.get('/posts', (req,res) => {
+  res.send(Post.all())
+})
+
+app.post('/posts', (req,res) => {
+  
+})
+
+
+
+
+
+
 
 
 let port = 3000

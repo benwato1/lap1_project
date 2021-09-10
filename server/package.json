@@ -1,7 +1,6 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,5 +15,6 @@
     "jest": "^27.1.1",
     "nodemon": "^2.0.12",
     "supertest": "^6.1.6"
-  }
+  },
+  "description": ""
 }
