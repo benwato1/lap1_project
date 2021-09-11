@@ -34,7 +34,12 @@ function addPost(resp) {
     const allPosts = resp.concat(addedPosts)
     console.log(allPosts)
 
-    for( let i = 0 ; i < allPosts.length ; i++) {
+    for( let i = 3 ; i < allPosts.length ; i++) {
+        console.log(allPosts[i].title)
+        console.log(allPosts[i].newpost)
+        
+        
+        
         let justcent = document.getElementById('justcent')
         let col_div = document.createElement('div')
         justcent.appendChild(col_div)
@@ -51,8 +56,10 @@ function addPost(resp) {
         card_div.appendChild(card_body)
         let h5 = document.createElement('h5')
         h5.setAttribute("class","card-title")
+        h5.id = `cardtitle${i}`
         card_body.appendChild(h5)
         let cardtext = document.createElement('div')
+        cardtext.id = `cardtext${i}`
         card_body.appendChild(cardtext)
         let buttongroup = document.createElement('div')
         buttongroup.setAttribute("class","btn-group w-100")
@@ -69,8 +76,21 @@ function addPost(resp) {
         buttongroup.appendChild(butt2)
         buttongroup.appendChild(butt3)
         buttongroup.appendChild(butt4)
+        butt1.textContent = document.getElementById('button1').textContent
+        butt2.textContent = document.getElementById('button2').textContent
+        butt3.textContent = document.getElementById('button3').textContent
+        butt4.textContent = document.getElementById('button4').textContent
+        console.log(document.getElementById(`cardtitle${i}`).innerText)
+        document.getElementById(`cardtitle${i}`).innerText = allPosts[i].title
+        console.log(document.getElementById(`cardtitle${i}`).innerText)
+        console.log(document.getElementById(`cardtext${i}`).innerText)
+        document.getElementById(`cardtext${i}`).innerText = allPosts[i].newpost
+        console.log(document.getElementById(`cardtext${i}`).innerText)
         
     }
+    // #10084
+    // &#129315
+    // &#128558&
 
     
 }
