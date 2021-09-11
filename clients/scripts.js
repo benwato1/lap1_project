@@ -1,12 +1,95 @@
-const submit_btn = document.getElementById('submit_btn')
+const form = document.getElementById('form')
+const submitteddate = document.getElementById('newdate')
 
-submit_btn.addEventListener('submit', submitPost )
+var addedPosts
+
+form.addEventListener('submit', callAPI )
 
 
-
-function submitPost(e) {
+function callAPI(e) {
     e.preventDefault()
     fetch('http://localhost:3000/posts')
-    .then(resp => resp.json())
-   
+    .then(resp => resp.json()) //makes an array of objects
+    .then(resp =>  addPost(resp))    
+    // .then(resp => console.log(resp))
+
 }
+
+function addPost(resp) {
+    
+    if(typeof(addedPosts) === "undefined") {
+    // console.log(typeof(addedPosts))
+    addedPosts = []
+    // console.log(addedPosts)
+    
+    } 
+    
+    const submittedTitle = document.getElementById('newtitle').value
+    const submittedNewpost = document.getElementById('newpost').value
+    const newId = resp.length
+    const fullPost = {id: newId, title: submittedTitle, newpost: submittedNewpost}
+    console.log(fullPost)
+    addedPosts.push(fullPost)
+    // console.log(addedPosts)
+    const allPosts = resp.concat(addedPosts)
+    console.log(allPosts)
+
+    for( let i = 0 ; i < allPosts.length ; i++) {
+        let justcent = document.getElementById('justcent')
+        let col_div = document.createElement('div')
+        justcent.appendChild(col_div)
+        col_div.setAttribute("class","col col-12 col-lg-6 col-xl-4 mb-3")
+        let card_div = document.createElement('div')
+        card_div.setAttribute("class","card")
+        col_div.appendChild(card_div)
+        let image = document.createElement('img')
+        image.setAttribute("class","card-img-top")
+        image.setAttribute("src","")
+        card_div.appendChild(image)
+        let card_body = document.createElement('div')
+        card_body.setAttribute("class","card-body")
+        card_div.appendChild(card_body)
+        let h5 = document.createElement('h5')
+        h5.setAttribute("class","card-title")
+        card_body.appendChild(h5)
+        let cardtext = document.createElement('div')
+        card_body.appendChild(cardtext)
+        let buttongroup = document.createElement('div')
+        buttongroup.setAttribute("class","btn-group w-100")
+        card_body.appendChild(buttongroup)
+        let butt1 = document.createElement('a')
+        let butt2 = document.createElement('a')
+        let butt3 = document.createElement('a')
+        let butt4 = document.createElement('a')
+        butt1.setAttribute("class","btn btn-light mt-2 btn-block")
+        butt2.setAttribute("class","btn btn-light mt-2 btn-block")
+        butt3.setAttribute("class","btn btn-light mt-2 btn-block")
+        butt4.setAttribute("class","btn btn-success mt-2")
+        buttongroup.appendChild(butt1)
+        buttongroup.appendChild(butt2)
+        buttongroup.appendChild(butt3)
+        buttongroup.appendChild(butt4)
+        
+    }
+
+    
+}
+
+{/* <div class="col col-12 col-lg-6 col-xl-4 mb-3">
+          <div class="card">
+            <img src="" alt="" class="card-img-top" />
+
+            <div class="card-body">
+              <h5 class="card-title">10/09/2021</h5>
+              <div class="card-text">
+                Post 3 .........
+              </div>
+              <div class="btn-group w-100">
+                <a href="" class="btn btn-light mt-2 btn-block">&#10084</a>
+                <a href="" class="btn btn-light mt-2 btn-block">&#129315</a>
+                <a href="" class="btn btn-light mt-2 btn-block">&#128558</a>
+                <a href="" class="btn btn-success mt-2">Comment</a>
+              </div>
+            </div>
+          </div>
+        </div> */}

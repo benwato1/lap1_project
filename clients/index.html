@@ -72,15 +72,15 @@
       </div>
       <!-- Collapsible wrapper -->
     </div>
-    <!-- Container wrapper -->
+    <!-- Container wrapper --> 
   </nav>
   </header>
   <!-- Navbar -->
 
-    <form class="w-50 mx-auto mb-4">
+    <form id="form" action="http://localhost:3000/posts" method="POST" class="w-50 mx-auto mb-4">
       <div class="mb-3">
         <label for="newpost" class="form-label">Make a new post</label><br>
-        <input type="date" class='form-control'>
+        <input type="date" class='form-control' id="newdate">
         <input
           type="text"
           placeholder="Title"
@@ -105,7 +105,7 @@
     </form>
 
     <div class="container">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center" id="justcent">
         <div class="col col-12 col-lg-6 col-xl-4 mb-3">
           <div class="card">
             <img src="" alt="" class="card-img-top" />

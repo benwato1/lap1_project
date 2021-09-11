@@ -5,6 +5,7 @@ app.use(cors());
 const posts = require('./data')
 const Post = require('./models')
 app.use(express.json());
+app.use(express.urlencoded({extended:false}))
 
 
 app.get('/', (req, res) => res.send('Welcome to the main page'))
@@ -14,7 +15,7 @@ app.get('/posts', (req,res) => {
 })
 
 app.post('/posts', (req,res) => {
-  
+  console.log(req.body)
 })
 
 
