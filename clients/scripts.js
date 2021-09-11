@@ -28,15 +28,16 @@ function addPost(resp) {
     const submittedNewpost = document.getElementById('newpost').value
     const newId = resp.length
     const fullPost = {id: newId, title: submittedTitle, newpost: submittedNewpost}
-    console.log(fullPost)
+    // console.log(fullPost)
     addedPosts.push(fullPost)
     // console.log(addedPosts)
     const allPosts = resp.concat(addedPosts)
-    console.log(allPosts)
+    // console.log(allPosts)
+    const lastIndex = allPosts.length - 1
+    console.log(lastIndex)
 
-    for( let i = 3 ; i < allPosts.length ; i++) {
-        console.log(allPosts[i].title)
-        console.log(allPosts[i].newpost)
+        // console.log(allPosts[i].title)
+        // console.log(allPosts[i].newpost)
         
         
         
@@ -56,10 +57,10 @@ function addPost(resp) {
         card_div.appendChild(card_body)
         let h5 = document.createElement('h5')
         h5.setAttribute("class","card-title")
-        h5.id = `cardtitle${i}`
+        h5.id = `cardtitle${lastIndex}`
         card_body.appendChild(h5)
         let cardtext = document.createElement('div')
-        cardtext.id = `cardtext${i}`
+        cardtext.id = `cardtext${lastIndex}`
         card_body.appendChild(cardtext)
         let buttongroup = document.createElement('div')
         buttongroup.setAttribute("class","btn-group w-100")
@@ -80,14 +81,14 @@ function addPost(resp) {
         butt2.textContent = document.getElementById('button2').textContent
         butt3.textContent = document.getElementById('button3').textContent
         butt4.textContent = document.getElementById('button4').textContent
-        console.log(document.getElementById(`cardtitle${i}`).innerText)
-        document.getElementById(`cardtitle${i}`).innerText = allPosts[i].title
-        console.log(document.getElementById(`cardtitle${i}`).innerText)
-        console.log(document.getElementById(`cardtext${i}`).innerText)
-        document.getElementById(`cardtext${i}`).innerText = allPosts[i].newpost
-        console.log(document.getElementById(`cardtext${i}`).innerText)
+        // console.log(document.getElementById(`cardtitle${i}`).innerText)
+        document.getElementById(`cardtitle${lastIndex}`).innerText = allPosts[lastIndex].title
+        // console.log(document.getElementById(`cardtitle${i}`).innerText)
+        // console.log(document.getElementById(`cardtext${i}`).innerText)
+        document.getElementById(`cardtext${lastIndex}`).innerText = allPosts[lastIndex].newpost
+        // console.log(document.getElementById(`cardtext${i}`).innerText)
         
-    }
+    
     // #10084
     // &#129315
     // &#128558&
