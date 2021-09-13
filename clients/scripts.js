@@ -12,28 +12,13 @@ function callAPI(e) {
     e.preventDefault()
     const submittedTitle = document.getElementById('newtitle').value
     const submittedNewpost = document.getElementById('newpost').value
-    if (submittedNewpost.length > 10) {
+    if (submittedNewpost.length > 100) {
         
         alert("Please use no more than 100 characters")
-        // if (typeof(inputFieldSection) === "undefined") {
-        //     console.log('here now')
-        //     const inputFieldSection = document.getElementById('inputFields')
-        //     console.log(typeof (inputFieldSection))
-        //     let theAlert = document.createElement('div')
-        //     inputFieldSection.appendChild(theAlert)
-        //     theAlert.setAttribute('class', 'alert alert-danger')
-        //     theAlert.textContent = "Please use no more than 100 characters"
-        // } else {
-        //     console.log('what bout here')
-        // }
-
-
-
+ 
     } else if (submittedNewpost.length === 0) {
 
-
-
-
+        alert("EMPTY")
 
 
     } else {
@@ -123,6 +108,27 @@ function storedPosts(resp) { //resp is the array of objects
 
 
     }
+
+    const commentbutton = document.getElementsByClassName('btn-success')
+    //const arraycommentbutton = Array.from(commentbutton)
+    console.log(commentbutton)
+    for (let i = 0; i < commentbutton.length; i++) {
+        commentbutton[i].addEventListener('click', newComment)
+    }
+    function newComment(e) {
+        e.preventDefault()
+        let firstcard = document.getElementById('firstcard')
+        let commentsForm = document.createElement('form')
+        firstcard.appendChild(commentsForm)
+        let inputcomment = document.createElement('input')
+        commentsForm.appendChild(inputcomment)
+        inputcomment.setAttribute('type', 'text')
+        //   inputcomment.setAttribute('class','form-control')
+        //  inputcomment.setAttribute('placeholder','Add a comment')
+        let submitComment = document.createElement('input')
+        commentsForm.appendChild(submitComment)
+        submitComment.setAttribute('type', 'submit')
+    }
     // const commentbutton = document.getElementsByClassName('btn-success')
     // console.log(commentbutton)
     // for(let i=0 ; i < commentbutton.length; i++){
@@ -141,7 +147,33 @@ function storedPosts(resp) { //resp is the array of objects
 
 }
 
-
+let APIKEY = "axJL2HvXKpt1neBIZwHPkMNAJXKXMpRm";
+        let gifSearchButton = document.getElementById('gifsearch')
+        function getGiff (e) {
+           e.preventDefault();
+           let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=1&q=`;
+           let str = document.getElementById("gifinput").value.trim();
+           url = url.concat(str);
+                  console.log(url);
+                  fetch(url)
+            .then(response => response.json())
+            .then(content => {
+              //  data, pagination, meta
+              console.log(content.data);
+              console.log("META", content.meta);
+              let fig = document.createElement("figure");
+              let img = document.createElement("img");
+              img.src = content.data[0].images.downsized.url;
+              img.alt = content.data[0].title;
+              fig.appendChild(img);
+              let out = document.getElementById("inputFields");
+              out.appendChild(fig);
+              document.getElementById('gifinput').value = "";
+            })
+            .catch(err => {
+              console.error(err);
+            }) }
+        gifSearchButton.addEventListener ('click', getGiff)
 
 
 
