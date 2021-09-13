@@ -1,113 +1,160 @@
 const form = document.getElementById('form')
 // const submitteddate = document.getElementById('newdate')
 
-
 fetch('http://localhost:3000/posts')
-.then(resp => resp.json())
-.then(resp => storedPosts(resp))
+    .then(resp => resp.json())
+    .then(resp => storedPosts(resp))
 
 
-form.addEventListener('submit', callAPI )
+form.addEventListener('submit', callAPI)
 
 function callAPI(e) {
     e.preventDefault()
-
     const submittedTitle = document.getElementById('newtitle').value
     const submittedNewpost = document.getElementById('newpost').value
-    console.log(submittedTitle)
-    console.log(submittedNewpost)
-    const fullPost = {title: submittedTitle, newpost: submittedNewpost}
+    if (submittedNewpost.length > 10) {
+        
+        alert("Please use no more than 100 characters")
+        // if (typeof(inputFieldSection) === "undefined") {
+        //     console.log('here now')
+        //     const inputFieldSection = document.getElementById('inputFields')
+        //     console.log(typeof (inputFieldSection))
+        //     let theAlert = document.createElement('div')
+        //     inputFieldSection.appendChild(theAlert)
+        //     theAlert.setAttribute('class', 'alert alert-danger')
+        //     theAlert.textContent = "Please use no more than 100 characters"
+        // } else {
+        //     console.log('what bout here')
+        // }
 
-    const options = {
-    method:'POST',
-    headers : {
-    'Content-Type' : 'application/json'
-    },
-    body : JSON.stringify(fullPost)
+
+
+    } else if (submittedNewpost.length === 0) {
+
+
+
+
+
+
+    } else {
+
+        const fullPost = { title: submittedTitle, newpost: submittedNewpost }
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(fullPost)
+        }
+
+
+        fetch('http://localhost:3000/posts', options)
+        // .then(resp => resp.json()) //makes an array of objects
+        // // .then(resp => newAddPost(resp))    
+        // .then(resp => console.log(resp))
+
+
+
+
     }
 
-
-    fetch('http://localhost:3000/posts', options)
-    // .then(resp => resp.json()) //makes an array of objects
-    // // .then(resp => newAddPost(resp))    
-    // .then(resp => console.log(resp))
 
 }
 
 
 
 
-    function storedPosts(resp) { //resp is the array of objects
+function storedPosts(resp) { //resp is the array of objects
 
-        
-            for(let i = 0 ; i <= resp.length - 1 ; i++) {
 
-                // Create the new posts
-                let justcent = document.getElementById('justcent')
-                let col_div = document.createElement('div')
-                justcent.appendChild(col_div)
-                col_div.setAttribute("class","col col-12 col-lg-6 col-xl-4 mb-3")
-                let card_div = document.createElement('div')
-                card_div.setAttribute("class","card")
-                col_div.appendChild(card_div)
-                let image = document.createElement('img')
-                image.setAttribute("class","card-img-top")
-                image.setAttribute("src","")
-                card_div.appendChild(image)
-                let card_body = document.createElement('div')
-                card_body.setAttribute("class","card-body")
-                card_div.appendChild(card_body)
-                let h5 = document.createElement('h5')
-                h5.setAttribute("class","card-title")
-                h5.id = `cardtitle${i}`
-                card_body.appendChild(h5)
-                let cardtext = document.createElement('div')
-                cardtext.id = `cardtext${i}`
-                card_body.appendChild(cardtext)
-                let buttongroup = document.createElement('div')
-                buttongroup.setAttribute("class","btn-group w-100")
-                card_body.appendChild(buttongroup)
-                let butt1 = document.createElement('a')
-                let butt2 = document.createElement('a')
-                let butt3 = document.createElement('a')
-                let butt4 = document.createElement('a')
-                butt1.setAttribute("class","btn btn-light mt-2 btn-block")
-                butt2.setAttribute("class","btn btn-light mt-2 btn-block")
-                butt3.setAttribute("class","btn btn-light mt-2 btn-block")
-                butt4.setAttribute("class","btn btn-success mt-2")
-                buttongroup.appendChild(butt1)
-                buttongroup.appendChild(butt2)
-                buttongroup.appendChild(butt3)
-                buttongroup.appendChild(butt4)
-                butt1.textContent = document.getElementById('button1').textContent
-                butt2.textContent = document.getElementById('button2').textContent
-                butt3.textContent = document.getElementById('button3').textContent
-                butt4.textContent = document.getElementById('button4').textContent
-                // console.log(document.getElementById(`cardtitle${i}`).innerText)
-                document.getElementById(`cardtitle${i}`).innerText = resp[i].title
-                // console.log(document.getElementById(`cardtitle${i}`).innerText)
-                // console.log(document.getElementById(`cardtext${i}`).innerText)
-                document.getElementById(`cardtext${i}`).innerText = resp[i].newpost 
-                // console.log(document.getElementById(`cardtext${i}`).innerText)
+    for (let i = 0; i <= resp.length - 1; i++) {
 
-            }
-        
-        }
-        
+        // Create the new posts
+        let justcent = document.getElementById('justcent')
+        let col_div = document.createElement('div')
+        justcent.appendChild(col_div)
+        col_div.setAttribute("class", "col col-12 col-lg-6 col-xl-4 mb-3")
+        let card_div = document.createElement('div')
+        card_div.setAttribute("class", "card")
+        col_div.appendChild(card_div)
+        let image = document.createElement('img')
+        image.setAttribute("class", "card-img-top")
+        image.setAttribute("src", "")
+        card_div.appendChild(image)
+        let card_body = document.createElement('div')
+        card_body.setAttribute("class", "card-body")
+        card_div.appendChild(card_body)
+        let h5 = document.createElement('h5')
+        h5.setAttribute("class", "card-title")
+        h5.id = `cardtitle${i}`
+        card_body.appendChild(h5)
+        let cardtext = document.createElement('div')
+        cardtext.id = `cardtext${i}`
+        card_body.appendChild(cardtext)
+        let buttongroup = document.createElement('div')
+        buttongroup.setAttribute("class", "btn-group w-100")
+        card_body.appendChild(buttongroup)
+        let butt1 = document.createElement('a')
+        let butt2 = document.createElement('a')
+        let butt3 = document.createElement('a')
+        let butt4 = document.createElement('a')
+        butt1.setAttribute("class", "btn btn-light mt-2 btn-block")
+        butt2.setAttribute("class", "btn btn-light mt-2 btn-block")
+        butt3.setAttribute("class", "btn btn-light mt-2 btn-block")
+        butt4.setAttribute("class", "btn btn-success mt-2")
+        buttongroup.appendChild(butt1)
+        buttongroup.appendChild(butt2)
+        buttongroup.appendChild(butt3)
+        buttongroup.appendChild(butt4)
+        butt1.textContent = document.getElementById('button1').textContent
+        butt2.textContent = document.getElementById('button2').textContent
+        butt3.textContent = document.getElementById('button3').textContent
+        butt4.textContent = document.getElementById('button4').textContent
+        // console.log(document.getElementById(`cardtitle${i}`).innerText)
+        document.getElementById(`cardtitle${i}`).innerText = resp[i].title
+        // console.log(document.getElementById(`cardtitle${i}`).innerText)
+        // console.log(document.getElementById(`cardtext${i}`).innerText)
+        document.getElementById(`cardtext${i}`).innerText = resp[i].newpost
+        // console.log(document.getElementById(`cardtext${i}`).innerText)
 
 
 
-        
-        
+
+
+    }
+    // const commentbutton = document.getElementsByClassName('btn-success')
+    // console.log(commentbutton)
+    // for(let i=0 ; i < commentbutton.length; i++){
+
+    //     commentbutton[i].addEventListener('click', newComment )
+
+
+
+    // }
+
+    // function newComment(e){
+    //     e.preventDefault()
+
+
+    // }
+
+}
+
+
+
+
+
+
         // const lastIndex = resp.length
 
-       
 
 
 
 
-        
-    
+
+
+
 
 
     // function newAddPost(resp) {
@@ -192,14 +239,14 @@ function callAPI(e) {
 // }
 
 // function addPost(resp) {
-    
+
 //     if(typeof(addedPosts) === "undefined") {
 //     // console.log(typeof(addedPosts))
 //     addedPosts = []
 //     // console.log(addedPosts)
-    
+
 //     } 
-    
+
 //     const submittedTitle = document.getElementById('newtitle').value
 //     const submittedNewpost = document.getElementById('newpost').value
 //     const newId = resp.length
@@ -230,9 +277,9 @@ function callAPI(e) {
 
 //         // console.log(allPosts[i].title)
 //         // console.log(allPosts[i].newpost)
-        
-        
-        
+
+
+
 //         let justcent = document.getElementById('justcent')
 //         let col_div = document.createElement('div')
 //         justcent.appendChild(col_div)
@@ -279,13 +326,13 @@ function callAPI(e) {
 //         // console.log(document.getElementById(`cardtext${i}`).innerText)
 //         document.getElementById(`cardtext${lastIndex}`).innerText = allPosts[lastIndex].newpost
 //         // console.log(document.getElementById(`cardtext${i}`).innerText)
-        
-    
+
+
 //     // #10084
 //     // &#129315
 //     // &#128558&
 
-    
+
 // }
 
 // {/* <div class="col col-12 col-lg-6 col-xl-4 mb-3">
@@ -308,4 +355,3 @@ function callAPI(e) {
 //         </div> */}
 
 
-        
