@@ -28,9 +28,9 @@ function callAPI(e) {
 
 
     fetch('http://localhost:3000/posts', options)
-    .then(resp => resp.json()) //makes an array of objects
-    // .then(resp => newAddPost(resp))    
-    .then(resp => console.log(resp))
+    // .then(resp => resp.json()) //makes an array of objects
+    // // .then(resp => newAddPost(resp))    
+    // .then(resp => console.log(resp))
 
 }
 
@@ -110,57 +110,57 @@ function callAPI(e) {
     
 
 
-    function newAddPost(resp) {
+    // function newAddPost(resp) {
 
-        const lastIndex = resp.length - 1
+    //     const lastIndex = resp.length - 1
 
-        let justcent = document.getElementById('justcent')
-                let col_div = document.createElement('div')
-                justcent.appendChild(col_div)
-                col_div.setAttribute("class","col col-12 col-lg-6 col-xl-4 mb-3")
-                let card_div = document.createElement('div')
-                card_div.setAttribute("class","card")
-                col_div.appendChild(card_div)
-                let image = document.createElement('img')
-                image.setAttribute("class","card-img-top")
-                image.setAttribute("src","")
-                card_div.appendChild(image)
-                let card_body = document.createElement('div')
-                card_body.setAttribute("class","card-body")
-                card_div.appendChild(card_body)
-                let h5 = document.createElement('h5')
-                h5.setAttribute("class","card-title")
-                h5.id = `cardtitle${lastIndex}`
-                card_body.appendChild(h5)
-                let cardtext = document.createElement('div')
-                cardtext.id = `cardtext${lastIndex}`
-                card_body.appendChild(cardtext)
-                let buttongroup = document.createElement('div')
-                buttongroup.setAttribute("class","btn-group w-100")
-                card_body.appendChild(buttongroup)
-                let butt1 = document.createElement('a')
-                let butt2 = document.createElement('a')
-                let butt3 = document.createElement('a')
-                let butt4 = document.createElement('a')
-                butt1.setAttribute("class","btn btn-light mt-2 btn-block")
-                butt2.setAttribute("class","btn btn-light mt-2 btn-block")
-                butt3.setAttribute("class","btn btn-light mt-2 btn-block")
-                butt4.setAttribute("class","btn btn-success mt-2")
-                buttongroup.appendChild(butt1)
-                buttongroup.appendChild(butt2)
-                buttongroup.appendChild(butt3)
-                buttongroup.appendChild(butt4)
-                butt1.textContent = document.getElementById('button1').textContent
-                butt2.textContent = document.getElementById('button2').textContent
-                butt3.textContent = document.getElementById('button3').textContent
-                butt4.textContent = document.getElementById('button4').textContent
-                // console.log(document.getElementById(`cardtitle${i}`).innerText)
-                document.getElementById(`cardtitle${lastIndex}`).innerText = resp[lastIndex].title
-                // console.log(document.getElementById(`cardtitle${i}`).innerText)
-                // console.log(document.getElementById(`cardtext${i}`).innerText)
-                document.getElementById(`cardtext${lastIndex}`).innerText = resp[lastIndex].newpost 
-                // console.log(document.getElementById(`cardtext${i}`).innerText)
-    }
+    //     let justcent = document.getElementById('justcent')
+    //             let col_div = document.createElement('div')
+    //             justcent.appendChild(col_div)
+    //             col_div.setAttribute("class","col col-12 col-lg-6 col-xl-4 mb-3")
+    //             let card_div = document.createElement('div')
+    //             card_div.setAttribute("class","card")
+    //             col_div.appendChild(card_div)
+    //             let image = document.createElement('img')
+    //             image.setAttribute("class","card-img-top")
+    //             image.setAttribute("src","")
+    //             card_div.appendChild(image)
+    //             let card_body = document.createElement('div')
+    //             card_body.setAttribute("class","card-body")
+    //             card_div.appendChild(card_body)
+    //             let h5 = document.createElement('h5')
+    //             h5.setAttribute("class","card-title")
+    //             h5.id = `cardtitle${lastIndex}`
+    //             card_body.appendChild(h5)
+    //             let cardtext = document.createElement('div')
+    //             cardtext.id = `cardtext${lastIndex}`
+    //             card_body.appendChild(cardtext)
+    //             let buttongroup = document.createElement('div')
+    //             buttongroup.setAttribute("class","btn-group w-100")
+    //             card_body.appendChild(buttongroup)
+    //             let butt1 = document.createElement('a')
+    //             let butt2 = document.createElement('a')
+    //             let butt3 = document.createElement('a')
+    //             let butt4 = document.createElement('a')
+    //             butt1.setAttribute("class","btn btn-light mt-2 btn-block")
+    //             butt2.setAttribute("class","btn btn-light mt-2 btn-block")
+    //             butt3.setAttribute("class","btn btn-light mt-2 btn-block")
+    //             butt4.setAttribute("class","btn btn-success mt-2")
+    //             buttongroup.appendChild(butt1)
+    //             buttongroup.appendChild(butt2)
+    //             buttongroup.appendChild(butt3)
+    //             buttongroup.appendChild(butt4)
+    //             butt1.textContent = document.getElementById('button1').textContent
+    //             butt2.textContent = document.getElementById('button2').textContent
+    //             butt3.textContent = document.getElementById('button3').textContent
+    //             butt4.textContent = document.getElementById('button4').textContent
+    //             // console.log(document.getElementById(`cardtitle${i}`).innerText)
+    //             document.getElementById(`cardtitle${lastIndex}`).innerText = resp[lastIndex].title
+    //             // console.log(document.getElementById(`cardtitle${i}`).innerText)
+    //             // console.log(document.getElementById(`cardtext${i}`).innerText)
+    //             document.getElementById(`cardtext${lastIndex}`).innerText = resp[lastIndex].newpost 
+    //             // console.log(document.getElementById(`cardtext${i}`).innerText)
+    // }
 
 
 
