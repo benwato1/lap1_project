@@ -1,5 +1,5 @@
 const form = document.getElementById('form')
-const submitteddate = document.getElementById('newdate')
+// const submitteddate = document.getElementById('newdate')
 
 
 fetch('http://localhost:3000/posts')
@@ -29,8 +29,8 @@ function callAPI(e) {
 
     fetch('http://localhost:3000/posts', options)
     .then(resp => resp.json()) //makes an array of objects
-    .then(resp => newAddPost(resp))    
-    // .then(resp => console.log(resp))
+    // .then(resp => newAddPost(resp))    
+    .then(resp => console.log(resp))
 
 }
 
@@ -39,10 +39,10 @@ function callAPI(e) {
 
     function storedPosts(resp) { //resp is the array of objects
 
-        if (resp.length !== 3) {
-            for(let i = 3 ; i <= resp.length - 1 ; i++) {
+        
+            for(let i = 0 ; i <= resp.length - 1 ; i++) {
 
-
+                // Create the new posts
                 let justcent = document.getElementById('justcent')
                 let col_div = document.createElement('div')
                 justcent.appendChild(col_div)
@@ -91,8 +91,7 @@ function callAPI(e) {
                 // console.log(document.getElementById(`cardtext${i}`).innerText)
 
             }
-        } else {
-            console.log('nothing added')
+        
         }
         
 
@@ -108,7 +107,7 @@ function callAPI(e) {
 
 
         
-    }
+    
 
 
     function newAddPost(resp) {

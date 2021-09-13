@@ -4,9 +4,11 @@ const cors = require('cors');
 app.use(cors());
 
 const fs = require('fs')
+
 const blogPosts = fs.readFileSync('posts.json')
 const blogPostDB = JSON.parse(blogPosts)
-const Post = require('./models')
+
+
 app.use(express.json());
 
 
