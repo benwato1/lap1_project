@@ -21,14 +21,16 @@ app.post('/posts', (req,res) => {
   console.log(req.body) 
   blogPostDB.push(req.body) // receives the newpost and pushes it to the database array
   stringblogPostDB = JSON.stringify(blogPostDB)
-  fs.writeFile('posts.json',stringblogPostDB, () => console.log('it worked') )
+  //fs.writeFile('posts.json',stringblogPostDB, () => console.log('it worked') )
   res.send(stringblogPostDB)
   
 })
 
 
-let port = 3000
+// let port = 3000
 
-app.listen(port, ()=> {
-  console.log(`Server is up and running at localhost:${port}`)
-})   
+// app.listen(port, ()=> {
+//   console.log(`Server is up and running at localhost:${port}`)
+// })   
+
+module.exports = app 
