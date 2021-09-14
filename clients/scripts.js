@@ -194,9 +194,10 @@ function storedPosts(resp) { //resp is the array of objects
 
         function increment1(e) {
             e.preventDefault()
-            let count1 = { id: i, count :emojiButton1[i].textContent}
-            console.log(count1)
-            
+            console.log(e.path[2].id.slice(10))
+            let emojiid  = (e.path[2].id).slice(10)
+            let count1 = { id: emojiid, emojicontent :emojiButton1[i].textContent}
+            // console.log(count1)
             const options = {
                 method: 'POST',
                 headers: {
@@ -204,22 +205,18 @@ function storedPosts(resp) { //resp is the array of objects
                 },
                 body: JSON.stringify(count1)
             }
-            fetch('http://localhost:3000/posts/emojis', options)
+            fetch('http://localhost:3000/posts/comments/emojis', options)
             .then(resp => resp.json())
-            .then(resp => resp.count)
+            .then(resp => resp.interactions)
+            .then(resp => resp[0])
+            // .then(resp => console.log(resp))
             .then(resp => changeUI(resp))
 
             function changeUI(resp) {
-
+                console.log(emojiButton1[i].textContent)
                 emojiButton1[i].textContent = `❤️ ${resp}`
-
             }
 
-
-
-            
-            
-            
         }
     }
 
@@ -228,9 +225,10 @@ function storedPosts(resp) { //resp is the array of objects
 
         function increment1(e) {
             e.preventDefault()
-            let count2 = {count :parseInt(emojiButton2[i].textContent.slice(3))}
-            console.log(count2)
-            
+            console.log(e.path[2].id.slice(10))
+            let emojiid  = (e.path[2].id).slice(10)
+            let count2 = { id: emojiid, emojicontent :emojiButton2[i].textContent}
+            // console.log(count1)
             const options = {
                 method: 'POST',
                 headers: {
@@ -238,22 +236,18 @@ function storedPosts(resp) { //resp is the array of objects
                 },
                 body: JSON.stringify(count2)
             }
-            fetch('http://localhost:3000/posts/emojis', options)
+            fetch('http://localhost:3000/posts/comments/emojis', options)
             .then(resp => resp.json())
-            .then(resp => resp.count)
+            .then(resp => resp.interactions)
+            .then(resp => resp[0])
+            // .then(resp => console.log(resp))
             .then(resp => changeUI(resp))
 
             function changeUI(resp) {
-
+                console.log(emojiButton2[i].textContent)
                 emojiButton2[i].textContent = `😂 ${resp}`
-
             }
 
-
-
-            
-            
-            
         }
     }
 
@@ -262,9 +256,10 @@ function storedPosts(resp) { //resp is the array of objects
 
         function increment1(e) {
             e.preventDefault()
-            let count3 = {count :parseInt(emojiButton3[i].textContent.slice(3))}
-            console.log(count3)
-            
+            console.log(e.path[2].id.slice(10))
+            let emojiid  = (e.path[2].id).slice(10)
+            let count3 = { id: emojiid, emojicontent :emojiButton3[i].textContent}
+            // console.log(count1)
             const options = {
                 method: 'POST',
                 headers: {
@@ -272,27 +267,24 @@ function storedPosts(resp) { //resp is the array of objects
                 },
                 body: JSON.stringify(count3)
             }
-            fetch('http://localhost:3000/posts/emojis', options)
+            fetch('http://localhost:3000/posts/comments/emojis', options)
             .then(resp => resp.json())
-            .then(resp => resp.count)
+            .then(resp => resp.interactions)
+            .then(resp => resp[0])
+            // .then(resp => console.log(resp))
             .then(resp => changeUI(resp))
 
             function changeUI(resp) {
-
+                console.log(emojiButton3[i].textContent)
                 emojiButton3[i].textContent = `😲 ${resp}`
-
             }
 
-
-
-            
-            
-            
         }
     }
 
-    
-    
+ 
+
+
 
 
 }
