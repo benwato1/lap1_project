@@ -10,9 +10,7 @@
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles.css" />
     <script
       src="https://kit.fontawesome.com/2d1fe27aec.js"
       crossorigin="anonymous"
@@ -80,88 +78,30 @@
     <form id="form" action="http://localhost:3000/posts" method="POST" class="w-50 mx-auto mb-4">
       <div class="mb-3" id="inputFields">
         <label for="newpost" class="form-label">Make a new post</label><br>
-        <input type="date" class='form-control' id="newdate">
         <input
           type="text"
           placeholder="Title"
           class="form-control"
           id="newtitle"
         />
-        <input
-          type="type"
+        <textarea
           placeholder="Write your own..."
           class="form-control"
           id="newpost"
-        />
+        ></textarea>
+        <div id='my-textarea-remaining-chars'>250 Characters Remaining</div>
       </div>
       <div id=gifs>
         <label for="searchgif">Search for a gif</label>
         <input type="text" name="searchgif" id="gifinput">
         <button id="gifsearch" class= 'btn btn-secondary'>Search</button>
       </div>
-      <button id="addgif" class="btn btn-secondary mb-2">Add Gif</button>
         <br>
       <button type="submit" class="btn btn-primary" id="submit_btn">Submit</button>
     </form>
 
     <div class="container">
       <div class="row justify-content-center" id="justcent">
-
-        <div class="col col-12 col-lg-6 col-xl-4 mb-3">
-          <div class="card">
-            <img src="" alt="" class="card-img-top" />
-
-            <div class="card-body" id="firstcard">
-              <h5 class="card-title" id="cardtitlebase0">My washing machine broke</h5>
-              <div class="card-text" id="cardtextbase0">
-                Post 1 .........
-              </div>
-              <div class="btn-group w-100">
-                <a href="" class="btn btn-light mt-2 btn-block" id="button1">&#10084</a>
-                <a href="" class="btn btn-light mt-2 btn-block" id="button2">&#129315</a>
-                <a href="" class="btn btn-light mt-2 btn-block" id="button3">&#128558</a>
-                <a href="" class="btn btn-success mt-2" id="button4">Comment</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col col-12 col-lg-6 col-xl-4 mb-3">
-          <div class="card">
-            <img src="" alt="" class="card-img-top" />
-
-            <div class="card-body">
-              <h5 class="card-title" id="cardtitlebase1">My car is on fire</h5>
-              <div class="card-text" id="cardtextbase1">
-                Post 2 .........
-              </div>
-              <div class="btn-group w-100">
-                <a href="" class="btn btn-light mt-2 btn-block">&#10084</a>
-                <a href="" class="btn btn-light mt-2 btn-block">&#129315</a>
-                <a href="" class="btn btn-light mt-2 btn-block">&#128558</a>
-                <a href="" class="btn btn-success mt-2">Comment</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col col-12 col-lg-6 col-xl-4 mb-3">
-          <div class="card">
-            <img src="" alt="" class="card-img-top" />
-
-            <div class="card-body">
-              <h5 class="card-title" id="cardtitlebase2">Why does my laptop overheat?</h5>
-              <div class="card-text" id="cardtextbase2">
-                Post 3 .........
-              </div>
-              <div class="btn-group w-100">
-                <a href="" class="btn btn-light mt-2 btn-block">&#10084</a>
-                <a href="" class="btn btn-light mt-2 btn-block">&#129315</a>
-                <a href="" class="btn btn-light mt-2 btn-block">&#128558</a>
-                <a href="" class="btn btn-success mt-2">Comment</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     

@@ -1,0 +1,11 @@
+#newpost{
+    height: 150px;
+    width: 100%;
+    }
+    #my-textarea-remaining-chars{
+        color: #333;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 5px;
+        text-align: right;
+    }
