@@ -6,7 +6,6 @@
     "start": "node server.js",
     "test": "jest --silent",
     "coverage": "jest --coverage"
-    
   },
   "keywords": [],
   "author": "",
