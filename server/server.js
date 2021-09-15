@@ -16,62 +16,76 @@ app.get('/', (req, res) => res.send('Welcome to the main page'))
 
 
 
-app.post('/posts', (req,res) => {
-  console.log(req.body) 
+app.post('/posts', (req, res) => {
+  console.log(req.body)
   blogPostDB.push(req.body) // receives the newpost and pushes it to the database array
   stringblogPostDB = JSON.stringify(blogPostDB)
-  fs.writeFile('posts.json',stringblogPostDB, () => console.log('it worked') )
+  fs.writeFile('posts.json', stringblogPostDB, () => console.log('it worked'))
   res.send(stringblogPostDB)
-  
+
 })
 
-app.get('/posts', (req,res) => {
+app.get('/posts', (req, res) => {
   res.send(blogPostDB)
 })
 
-app.post('/posts/comments', (req,res) => {
-  console.log(req.body) 
-  console.log(req.body.identifier) 
+app.post('/posts/comments', (req, res) => {
+  console.log(req.body)
+  console.log(req.body.identifier)
   const iden = req.body.identifier
   console.log(blogPostDB[iden])
   blogPostDB[iden].comments.push(req.body.comment)
   console.log(blogPostDB)
   stringblogPostDB = JSON.stringify(blogPostDB)
-  fs.writeFile('posts.json',stringblogPostDB, () => console.log('it worked') )
+  fs.writeFile('posts.json', stringblogPostDB, () => console.log('it worked'))
   //res.send(stringblogPostDB)
   res.send('its working')
 })
 
 
-app.post('/posts/comments/emojis', (req,res) => {
-  console.log(req.body)
-  let countString = req.body.count
-  let count = parseInt(countString.slice(2))
-  count++
-  blogPostDB
-  // console.log(req.body)
+app.post('/posts/comments/emojis', (req, res) => {
 
-  // res.send(req.body)
-  
+  let countString = req.body.emojicontent
+  let count
 
-  // switch(req.body.slice){
+  switch (countString.substring(0, 2)) {
+    case "❤️":
+      countString = req.body.emojicontent
+      count = parseInt(countString.slice(2))
+      count++
+      blogPostDB[req.body.id].interactions[0] = count
+      break;
+    case "😂":
+      countString = req.body.emojicontent
+      count = parseInt(countString.slice(2))
+      count++
+      blogPostDB[req.body.id].interactions[1] = count
+      break;
+    case "😲":
+      countString = req.body.emojicontent
+      count = parseInt(countString.slice(2))
+      count++
+      blogPostDB[req.body.id].interactions[2] = count
+  }
+  stringblogPostDB = JSON.stringify(blogPostDB)
+  fs.writeFile('posts.json', stringblogPostDB, () => console.log('it worked'))
+  res.send(blogPostDB[req.body.id])
 
 
-  // }
-
-  // blogPostDB.push(req.body) // receives the newpost and pushes it to the database array
-  // stringblogPostDB = JSON.stringify(blogPostDB)
-  // fs.writeFile('posts.json',stringblogPostDB, () => console.log('it worked') )
-  // res.send(stringblogPostDB)
-  
 })
 
 
 
 // let port = 3000
 
+<<<<<<< HEAD
 // app.listen(port, ()=> {
 //   console.log(`Server is up and running at localhost:${port}`)
 // })   
 
 module.exports = app 
+=======
+app.listen(port, () => {
+  console.log(`Server is up and running at localhost:${port}`)
+})
+>>>>>>> e50c5fb3859e3f6f698c9f4d1d1762d29b66a7b0
