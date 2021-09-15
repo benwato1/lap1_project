@@ -15,7 +15,7 @@ function callAPI(e) {
     const submittedTitle = document.getElementById('newtitle').value
     const submittedNewpost = document.getElementById('newpost').value
     const chosenGif = document.getElementById('gifimage')
-    const giflink = chosenGif.src
+    const giflink = chosenGif.src 
     // console.log(chosenGif.src)
     let currentdate = new Date()
     let y = currentdate.getFullYear()
@@ -66,7 +66,7 @@ function storedPosts(resp) { //resp is the array of objects
         justcent.prepend(col_div)
         col_div.setAttribute("class", "col col-12 col-lg-6 col-xl-4 mb-3")
         let card_div = document.createElement('div')
-        card_div.setAttribute("class", "card")
+        card_div.setAttribute("class", "card zoom border-3 border-dark rounded-right shadow-lg mb-5 bg-white rounded")
         col_div.appendChild(card_div)
         let image = document.createElement('img')
         image.setAttribute("class", "card-img-top")
@@ -77,9 +77,13 @@ function storedPosts(resp) { //resp is the array of objects
         card_body.setAttribute('id', `card-body-${i}`)
         card_div.appendChild(card_body)
         let h5 = document.createElement('h5')
-        h5.setAttribute("class", "card-title")
+        let h6 = document.createElement('h6')
+        h6.setAttribute("class", "card-subtitle text-muted mb-2")
+        h5.setAttribute("class", "card-title mb-2")
         h5.id = `cardtitle${i}`
+        h6.id = `cardsubtitle${i}`
         card_body.appendChild(h5)
+        card_body.appendChild(h6)
         let cardtext = document.createElement('div')
         cardtext.id = `cardtext${i}`
         card_body.appendChild(cardtext)
@@ -105,7 +109,8 @@ function storedPosts(resp) { //resp is the array of objects
         butt2.textContent = `😂 ${emojicount2}`
         butt3.textContent = `😲 ${emojicount3}`
         butt4.textContent = "Comment"
-        document.getElementById(`cardtitle${i}`).innerText = `${resp[i].title} - ${resp[i].date}`
+        document.getElementById(`cardtitle${i}`).innerText = `${resp[i].title}`
+        document.getElementById(`cardsubtitle${i}`).innerText = `${resp[i].date}`
         document.getElementById(`cardtext${i}`).innerText = resp[i].newpost
         let allCommentContent = document.createElement('div')
         allCommentContent.setAttribute('class', 'mx-3 mb-3')
