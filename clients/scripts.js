@@ -104,24 +104,24 @@ function storedPosts(resp) { //resp is the array of objects
         butt1.textContent = `❤️ ${emojicount1}`
         butt2.textContent = `😂 ${emojicount2}`
         butt3.textContent = `😲 ${emojicount3}`
-        butt4.textContent =   "Comment"
+        butt4.textContent = "Comment"
         document.getElementById(`cardtitle${i}`).innerText = `${resp[i].title} - ${resp[i].date}`
         document.getElementById(`cardtext${i}`).innerText = resp[i].newpost
         let allCommentContent = document.createElement('div')
-        allCommentContent.setAttribute('class','mx-3 mb-3')
+        allCommentContent.setAttribute('class', 'mx-3 mb-3')
         card_div.appendChild(allCommentContent)
         let commentTitle = document.createElement('h5')
-        commentTitle.setAttribute('class','m-2')
+        commentTitle.setAttribute('class', 'm-2')
         allCommentContent.appendChild(commentTitle)
         commentTitle.innerText = 'All comments'
         let commentList = document.createElement('ul')
-        commentList.setAttribute('class','list-unstyled')
+        commentList.setAttribute('class', 'list-unstyled')
         allCommentContent.appendChild(commentList)
         for (let j = 0; j < resp[i].comments.length; j++) {
             let newLi = document.createElement('li')
             commentList.appendChild(newLi)
             newLi.innerText = resp[i].comments[j]
-            newLi.setAttribute('class','bg-light m-2 px-2')
+            newLi.setAttribute('class', 'bg-light m-2 px-2')
         }
     }
 
@@ -138,48 +138,55 @@ function storedPosts(resp) { //resp is the array of objects
         let ourId = e.path[2]['id']
         //console.log(ourId)
         let card = document.getElementById(`${ourId}`)
-        let commentsForm = document.createElement('form')
-        card.appendChild(commentsForm)
-        commentsForm.setAttribute('class', 'commentingforms')
-        let inputcomment = document.createElement('input')
-        commentsForm.appendChild(inputcomment)
-        inputcomment.setAttribute('type', 'text')
-        inputcomment.setAttribute('id', `${ourId}-comments`)
-        inputcomment.setAttribute('class', 'form-control my-2')
-        inputcomment.setAttribute('placeholder', 'Add a comment')
-        let submitComment = document.createElement('input')
-        commentsForm.appendChild(submitComment)
-        submitComment.setAttribute('type', 'submit')
-        submitComment.setAttribute('class', 'btn btn-info')
-        let commentsubmitbutton = document.getElementsByClassName('btn btn-info')
-        for (let i = 0; i < commentsubmitbutton.length; i++) {
-            commentsubmitbutton[i].addEventListener('click', appendComment)
-            function appendComment(e) {
-                e.preventDefault()
-                let commentIndex = (e.path[2].id).slice(10)
-                let fullComment = e.path[1][0].value
-                fetch('http://localhost:3000/posts')
-                    .then(resp => resp.json())
-                   // .then(resp => resp.length)
-                    .then(resp => idFunction(resp))
-                   // .then(resp => console.log(resp))
-                function idFunction() {
-                    const addingComment = {
-                        identifier: commentIndex,
-                        comment: fullComment
+        let commentsFormcheck = document.getElementById(`commentsForm${ourId}`)
+        console.log(commentsFormcheck)
+        if (commentsFormcheck === null) {
+            let commentsForm = document.createElement('form')
+            commentsForm.id = `commentsForm${ourId}`
+            card.appendChild(commentsForm)
+            commentsForm.setAttribute('class', 'commentingforms')
+            let inputcomment = document.createElement('input')
+            commentsForm.appendChild(inputcomment)
+            inputcomment.setAttribute('type', 'text')
+            inputcomment.setAttribute('id', `${ourId}-comments`)
+            inputcomment.setAttribute('class', 'form-control my-2')
+            inputcomment.setAttribute('placeholder', 'Add a comment')
+            let submitComment = document.createElement('input')
+            commentsForm.appendChild(submitComment)
+            submitComment.setAttribute('type', 'submit')
+            submitComment.setAttribute('class', 'btn btn-info')
+            let commentsubmitbutton = document.getElementsByClassName('btn btn-info')
+            for (let i = 0; i < commentsubmitbutton.length; i++) {
+                commentsubmitbutton[i].addEventListener('click', appendComment)
+                function appendComment(e) {
+                    e.preventDefault()
+                    let commentIndex = (e.path[2].id).slice(10)
+                    let fullComment = e.path[1][0].value
+                    fetch('http://localhost:3000/posts')
+                        .then(resp => resp.json())
+                        // .then(resp => resp.length)
+                        .then(resp => idFunction(resp))
+                    // .then(resp => console.log(resp))
+                    function idFunction() {
+                        const addingComment = {
+                            identifier: commentIndex,
+                            comment: fullComment
+                        }
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(addingComment)
+                        }
+                        console.log(addingComment.comment)
+                        fetch('http://localhost:3000/posts/comments', options)
                     }
-                    const options = {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(addingComment)
-                    }
-                    console.log(addingComment.comment)
-                    fetch('http://localhost:3000/posts/comments', options)
                 }
             }
+
         }
+
     }
 
     const emojiButton1 = document.getElementsByClassName('emoji1')
@@ -195,8 +202,8 @@ function storedPosts(resp) { //resp is the array of objects
         function increment1(e) {
             e.preventDefault()
             console.log(e.path[2].id.slice(10))
-            let emojiid  = (e.path[2].id).slice(10)
-            let count1 = { id: emojiid, emojicontent :emojiButton1[i].textContent}
+            let emojiid = (e.path[2].id).slice(10)
+            let count1 = { id: emojiid, emojicontent: emojiButton1[i].textContent }
             // console.log(count1)
             const options = {
                 method: 'POST',
@@ -206,11 +213,11 @@ function storedPosts(resp) { //resp is the array of objects
                 body: JSON.stringify(count1)
             }
             fetch('http://localhost:3000/posts/comments/emojis', options)
-            .then(resp => resp.json())
-            .then(resp => resp.interactions)
-            .then(resp => resp[0])
-            // .then(resp => console.log(resp))
-            .then(resp => changeUI(resp))
+                .then(resp => resp.json())
+                .then(resp => resp.interactions)
+                .then(resp => resp[0])
+                // .then(resp => console.log(resp))
+                .then(resp => changeUI(resp))
 
             function changeUI(resp) {
                 console.log(emojiButton1[i].textContent)
@@ -226,8 +233,8 @@ function storedPosts(resp) { //resp is the array of objects
         function increment1(e) {
             e.preventDefault()
             console.log(e.path[2].id.slice(10))
-            let emojiid  = (e.path[2].id).slice(10)
-            let count2 = { id: emojiid, emojicontent :emojiButton2[i].textContent}
+            let emojiid = (e.path[2].id).slice(10)
+            let count2 = { id: emojiid, emojicontent: emojiButton2[i].textContent }
             // console.log(count1)
             const options = {
                 method: 'POST',
@@ -237,11 +244,11 @@ function storedPosts(resp) { //resp is the array of objects
                 body: JSON.stringify(count2)
             }
             fetch('http://localhost:3000/posts/comments/emojis', options)
-            .then(resp => resp.json())
-            .then(resp => resp.interactions)
-            .then(resp => resp[0])
-            // .then(resp => console.log(resp))
-            .then(resp => changeUI(resp))
+                .then(resp => resp.json())
+                .then(resp => resp.interactions)
+                .then(resp => resp[1])
+                // .then(resp => console.log(resp))
+                .then(resp => changeUI(resp))
 
             function changeUI(resp) {
                 console.log(emojiButton2[i].textContent)
@@ -257,8 +264,8 @@ function storedPosts(resp) { //resp is the array of objects
         function increment1(e) {
             e.preventDefault()
             console.log(e.path[2].id.slice(10))
-            let emojiid  = (e.path[2].id).slice(10)
-            let count3 = { id: emojiid, emojicontent :emojiButton3[i].textContent}
+            let emojiid = (e.path[2].id).slice(10)
+            let count3 = { id: emojiid, emojicontent: emojiButton3[i].textContent }
             // console.log(count1)
             const options = {
                 method: 'POST',
@@ -268,11 +275,11 @@ function storedPosts(resp) { //resp is the array of objects
                 body: JSON.stringify(count3)
             }
             fetch('http://localhost:3000/posts/comments/emojis', options)
-            .then(resp => resp.json())
-            .then(resp => resp.interactions)
-            .then(resp => resp[0])
-            // .then(resp => console.log(resp))
-            .then(resp => changeUI(resp))
+                .then(resp => resp.json())
+                .then(resp => resp.interactions)
+                .then(resp => resp[2])
+                // .then(resp => console.log(resp))
+                .then(resp => changeUI(resp))
 
             function changeUI(resp) {
                 console.log(emojiButton3[i].textContent)
@@ -282,7 +289,7 @@ function storedPosts(resp) { //resp is the array of objects
         }
     }
 
- 
+
 
 
 
@@ -296,6 +303,7 @@ gifSearchButton.addEventListener('click', getGiff)
 function getGiff(e) {
     e.preventDefault();
     let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=1&q=`;
+
     let str = document.getElementById("gifinput").value.trim();
     url = url.concat(str);
     // console.log(url);
@@ -306,19 +314,38 @@ function getGiff(e) {
             console.error(err);
         })
 
-
     function gifCreate(content) {
+        
 
-        let fig = document.createElement("figure");
-        let img = document.createElement("img");
-        img.id = `gifimage`
-        img.src = content.data[0].images.downsized.url;
-        img.alt = content.data[0].title;
-        fig.appendChild(img);
-        fig.id = `giffig`
-        let out = document.getElementById("inputFields");
-        out.appendChild(fig);
-        document.getElementById('gifinput').value = "";
+        if (typeof (fig) === 'undefined') {
+            console.log('first time')
+            fig = document.createElement("figure");
+            let img = document.createElement("img");
+            img.id = `gifimage`
+            img.src = content.data[0].images.downsized.url;
+            img.alt = content.data[0].title;
+            fig.appendChild(img);
+            fig.id = `giffig`
+            let out = document.getElementById("inputFields");
+            out.appendChild(fig);
+            document.getElementById('gifinput').value = "";
+
+        } else {
+            console.log('second time')
+            img = document.getElementById(`gifimage`)
+            img.src = content.data[0].images.downsized.url;
+            img.alt = content.data[0].title;
+            fig.appendChild(img);
+            fig.id = `giffig`
+            let out = document.getElementById("inputFields");
+            out.appendChild(fig);
+            document.getElementById('gifinput').value = "";
+
+
+
+        }
+
+
 
     }
 

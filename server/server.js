@@ -69,6 +69,7 @@ app.post('/posts/comments/emojis', (req, res) => {
   }
   stringblogPostDB = JSON.stringify(blogPostDB)
   fs.writeFile('posts.json', stringblogPostDB, () => console.log('it worked'))
+  console.log(blogPostDB[req.body.id])
   res.send(blogPostDB[req.body.id])
 
 
@@ -76,7 +77,7 @@ app.post('/posts/comments/emojis', (req, res) => {
 
 
 
-// let port = 3000
+let port = 3000
 
 app.listen(port, () => {
   console.log(`Server is up and running at localhost:${port}`)
