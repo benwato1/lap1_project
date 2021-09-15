@@ -1,3 +1,4 @@
+
 const form = document.getElementById('form')
 // const submitteddate = document.getElementById('newdate')
 
@@ -12,6 +13,7 @@ form.addEventListener('submit', callAPI)
 
 function callAPI(e) {
     e.preventDefault()
+  
     const submittedTitle = document.getElementById('newtitle').value
     const submittedNewpost = document.getElementById('newpost').value
     const chosenGif = document.getElementById('gifimage')
@@ -362,5 +364,3 @@ function characterCheck() {
     remainingCharsText.style.color = color;
 }
 myTextArea.addEventListener('input', characterCheck)
-
-
