@@ -1,7 +1,7 @@
 const form = document.getElementById('form')
 // const submitteddate = document.getElementById('newdate')
 
-fetch('https://project-1-anonymous-blog.herokuapp.com/posts')
+fetch('http://localhost:3000/posts')
     .then(resp => resp.json())
     .then(resp => storedPosts(resp))
 
@@ -29,7 +29,7 @@ function callAPI(e) {
     } else if (submittedNewpost.length === 0) {
         alert("Please enter more than 0 characters")
     } else {
-        fetch('https://project-1-anonymous-blog.herokuapp.com/posts')
+        fetch('http://localhost:3000/posts')
             .then(resp => resp.json())
             .then(resp => resp.length)
             .then(resp => newIdFunction(resp))
@@ -50,7 +50,7 @@ function callAPI(e) {
                 },
                 body: JSON.stringify(fullPost)
             }
-            fetch('https://project-1-anonymous-blog.herokuapp.com/posts', options)
+            fetch('http://localhost:3000/posts', options)
         }
     }
 }
@@ -158,7 +158,7 @@ function storedPosts(resp) { //resp is the array of objects
                 e.preventDefault()
                 let commentIndex = (e.path[2].id).slice(10)
                 let fullComment = e.path[1][0].value
-                fetch('https://project-1-anonymous-blog.herokuapp.com/posts')
+                fetch('http://localhost:3000/posts')
                     .then(resp => resp.json())
                    // .then(resp => resp.length)
                     .then(resp => idFunction(resp))
@@ -176,7 +176,7 @@ function storedPosts(resp) { //resp is the array of objects
                         body: JSON.stringify(addingComment)
                     }
                     console.log(addingComment.comment)
-                    fetch('https://project-1-anonymous-blog.herokuapp.com/posts/comments', options)
+                    fetch('http://localhost:3000/posts/comments', options)
                 }
             }
         }
@@ -205,7 +205,7 @@ function storedPosts(resp) { //resp is the array of objects
                 },
                 body: JSON.stringify(count1)
             }
-            fetch('https://project-1-anonymous-blog.herokuapp.com/posts/comments/emojis', options)
+            fetch('http://localhost:3000/posts/comments/emojis', options)
             .then(resp => resp.json())
             .then(resp => resp.interactions)
             .then(resp => resp[0])
@@ -267,7 +267,7 @@ function storedPosts(resp) { //resp is the array of objects
                 },
                 body: JSON.stringify(count3)
             }
-            fetch('https://project-1-anonymous-blog.herokuapp.com/posts/comments/emojis', options)
+            fetch('http://localhost:3000/posts/comments/emojis', options)
             .then(resp => resp.json())
             .then(resp => resp.interactions)
             .then(resp => resp[0])
