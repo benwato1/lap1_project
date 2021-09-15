@@ -1,3 +1,4 @@
+const { post } = require("superagent");
 const request = require("supertest");
 const server = require("../server");
 
@@ -29,14 +30,26 @@ describe('API Server', () => {
         .post('/posts')
         .send(testPost)
         .expect(200)
-        .expect({...testPost}, done);
+        .expect(JSON.stringify([testPost]), done);
     })
 
-    it('responds to non existing paths with 404', (done) => {
+    // test('get status 200 when request made to posts/comments', done => {
+    //     request(api)
+    //     .post('/posts/comments')
+    //     .send(//notsure)
+    // })
+
+    // test('get status 200 when request made to posts/comments/emojis', () => {
+    //     request(api)
+    //     .post('/posts/comments/emojis')
+    //     .send(//notsure)
+    // })
+
+    test('responds to non existing paths with 404', (done) => {
         request(api).get('/no').expect(404, done);
     });
     // should be showing a 405
-    it('responds to invalid method request with 404', (done) => {
+    test('responds to invalid method request with 404', (done) => {
         request(api).post('/').expect(404, done);
     });
 })

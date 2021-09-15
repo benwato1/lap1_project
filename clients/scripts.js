@@ -336,13 +336,14 @@ function getGiff(e) {
 const myTextArea = document.getElementById('newpost')
 const remainingCharsText = document.getElementById('my-textarea-remaining-chars')
 const MAX_CHARS = 250;
-myTextArea.addEventListener('input', () =>{
+
+function characterCheck() {
     const remaining = MAX_CHARS - myTextArea.value.length;
     const color = remaining < MAX_CHARS * 0.1 ? 'red' : null;
     remainingCharsText.textContent = `${remaining} characters remaing`;
     remainingCharsText.style.color = color;
-})
+}
 
-
+myTextArea.addEventListener('input', characterCheck)
 
 
