@@ -78,14 +78,6 @@ app.post('/posts/comments/emojis', (req, res) => {
 
 // let port = 3000
 
-<<<<<<< HEAD
-// app.listen(port, ()=> {
-//   console.log(`Server is up and running at localhost:${port}`)
-// })   
-
-module.exports = app 
-=======
 app.listen(port, () => {
   console.log(`Server is up and running at localhost:${port}`)
 })
->>>>>>> e50c5fb3859e3f6f698c9f4d1d1762d29b66a7b0
